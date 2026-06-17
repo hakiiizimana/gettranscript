@@ -4,8 +4,6 @@ import { getYouTubeThumbnailUrl, normalizeYouTubeUrl } from "@/lib/youtube";
 
 const STOPHY_URL = "https://api.stophy.dev/v1/video";
 
-type StophyRequestType = "transcript" | "details";
-
 interface StophySegment {
   duration: number;
   start: number;
@@ -16,16 +14,6 @@ interface StophyTranscriptData {
   language?: { code?: string; name?: string };
   segments?: StophySegment[];
   videoId: string;
-}
-
-interface StophyDetailsData {
-  video: {
-    id: string;
-    videoUrl: string;
-    title: string;
-    author: string;
-    description: string | null;
-  };
 }
 
 interface StophySuccess<T> {
@@ -41,7 +29,6 @@ interface StophyError {
 
 async function callStophy<T>(
   videoUrl: string,
-  type: StophyRequestType,
   retry = true
 ): Promise<StophySuccess<T>> {
   const apiKey = process.env.STOPHY_API_KEY;
@@ -56,7 +43,7 @@ async function callStophy<T>(
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ videoUrl, type }),
+    body: JSON.stringify({ videoUrl, type: "transcript" }),
   });
 
   let json: StophySuccess<T> | StophyError;
@@ -72,7 +59,7 @@ async function callStophy<T>(
 
     if (retry && code === "CONCURRENCY_LIMITED") {
       await new Promise((r) => setTimeout(r, 600));
-      return callStophy(videoUrl, type, false);
+      return callStophy(videoUrl, false);
     }
 
     console.error("Stophy error:", code, err.error);
@@ -84,17 +71,13 @@ async function callStophy<T>(
 
 function normalizeTranscript(
   transcript: StophyTranscriptData,
-  details: StophyDetailsData,
   canonicalUrl: string
 ): TranscriptResult {
   const segments = transcript.segments ?? [];
-  const { video } = details;
 
   return {
     videoId: transcript.videoId,
-    videoUrl: canonicalUrl || video.videoUrl,
-    title: video.title,
-    author: video.author,
+    videoUrl: canonicalUrl,
     thumbnailUrl: getYouTubeThumbnailUrl(transcript.videoId),
     language:
       transcript.language?.code ?? transcript.language?.name ?? "unknown",
@@ -110,17 +93,6 @@ export async function fetchTranscript(
   inputUrl: string
 ): Promise<TranscriptResult> {
   const videoUrl = normalizeYouTubeUrl(inputUrl);
-  const transcriptResult = await callStophy<StophyTranscriptData>(
-    videoUrl,
-    "transcript"
-  );
-  const detailsResult = await callStophy<StophyDetailsData>(
-    videoUrl,
-    "details"
-  );
-  return normalizeTranscript(
-    transcriptResult.data,
-    detailsResult.data,
-    videoUrl
-  );
+  const transcriptResult = await callStophy<StophyTranscriptData>(videoUrl);
+  return normalizeTranscript(transcriptResult.data, videoUrl);
 }

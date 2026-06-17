@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Copy, Download, Eye, Flame, Loader2 } from "lucide-react";
+import { Copy, Download, Eye, Flame, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -189,37 +189,27 @@ export function TranscriptCard() {
 
         {transcript && (
           <div className="flex flex-col gap-3">
-            <div className="flex flex-col gap-3 rounded-xl border border-border/45 bg-muted/20 p-4 sm:flex-row">
-              <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-lg bg-muted sm:w-44">
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                className="relative block aspect-video w-20 shrink-0 overflow-hidden rounded-lg bg-muted ring-1 ring-border/45 transition-opacity hover:opacity-90 sm:w-24"
+                href={transcript.videoUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 <Image
-                  alt={transcript.title}
+                  alt={
+                    transcript.title
+                      ? `Thumbnail for ${transcript.title}`
+                      : "YouTube video thumbnail"
+                  }
                   className="object-cover"
                   fill
-                  sizes="(max-width: 640px) 100vw, 176px"
+                  sizes="96px"
                   src={transcript.thumbnailUrl}
                 />
-              </div>
-              <div className="flex min-w-0 flex-1 flex-col justify-center gap-2">
-                <h3 className="line-clamp-2 font-medium font-mono text-sm leading-snug">
-                  {transcript.title}
-                </h3>
-                <p className="font-mono text-muted-foreground text-xs">
-                  {transcript.author} · {transcript.segments.length} segments ·{" "}
-                  {transcript.language}
-                </p>
-                <a
-                  className="inline-flex w-fit items-center gap-1 font-mono text-muted-foreground text-xs underline-offset-4 hover:text-foreground hover:underline"
-                  href={transcript.videoUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Watch on YouTube
-                  <ArrowRight className="size-3.5" data-icon />
-                </a>
-              </div>
-            </div>
+              </a>
 
-            <div className="flex flex-wrap items-center justify-end gap-2">
+              <div className="flex flex-1 flex-wrap items-center justify-end gap-2">
               <Tip label="Copy the full text">
                 <Button
                   className="h-8 gap-1.5 rounded-full px-3 text-xs"
@@ -286,6 +276,7 @@ export function TranscriptCard() {
                   .json
                 </Button>
               </Tip>
+            </div>
             </div>
 
             <TranscriptView transcript={transcript} />
