@@ -1,0 +1,2056 @@
+{
+  "videoId": "A-IJ5QmeXpk",
+  "videoUrl": "https://youtube.com/watch?v=A-IJ5QmeXpk",
+  "title": "PirateSoftware is right, this needs to stop",
+  "author": "Theo - t3․gg",
+  "thumbnailUrl": "https://i.ytimg.com/vi/A-IJ5QmeXpk/hqdefault.jpg",
+  "language": "en",
+  "plainText": "if you're a prolific enough gamer you might have noticed that hiio was down a few days ago the reason is utter chaos throughout my years I've seen a lot of different ways that a website can go down I've never seen one quite as weird dumb and just worth talking about as this one quickly from their words hiio has been taken down by original Funko because they Ed some trash AI powered brand protection software that created some bogus fishing report to our registar who ignored our responses and just disabled the domain this isn't that simp Le this is hilarious they even called his mom yes the hi founder and owner's mom got called because they were so upset about the social media that this is chaos and we have a lot to talk about and I promise you we'll get there right after a quick word from today's sponsor saala the best place to deploy anything and I mean anything they're not joking when they say this they came from the WordPress world if you've heard of kinsta this is them theyve built a platform to host everything else and I mean it from here I can click one button and deploy a larl app D Jango app V app next app any of these and it's not just the app code it's the database too it's the CDN with cloudflare all the craziness you need to set up a web app correctly it takes multiple infer providers to do it right now it doesn't it's basically like you set up your AWS perfectly and you're using cloudflare for the CDN because their cdns are the best in the world but it actually does all of it for you I just click the deploy button it's deploying right now cool it's deployed if we go to the overview we can see all the parts we can see that cloud flare is in front with DOs protection we could even set it up with CDN and Edge caching with any of the different deployments that we do do after be nextjs you can use the cool next features we're used to from versell anywhere now with all the fun Integrations everything from automatic Builds on poll requests all the fun GitHub automatic deployment and CI stuff everything you would need or expect built in if even I can spin up a full stack LEL app that effortlessly you're going to have no trouble a fantastic platform for hosting pretty much anything and I've had a lot of fun with it myself thank you s for sponsoring check them out today at soy. l/ Savala thankfully by the time you're watching this video itched iio is again back online which is very good the indie game scene needs itch if it fails a lot of Indie Game Dev goes along with it we need iio to survive these types of things are to be frank pathetic also credit to Pirate software for putting this on my radar absolute chaos we need to break this down layer by layer OB viously the immediate effect hiio was taken down the take down happened because of I want my name which is a DNS provider I have to excal draw this because there's a lot of layers and I want to make sure that we get it right so if you know anything about software you know it is built on layers if you have something like a DNS provider this has to be built on something this is built on registar and I can standards [ __ ] so on top of the registers we have a DNS provider the DNS provider is something that you now use as the like service owner so when you are the owner of something like ping. g hio whatever you have built on top of the DNS Provider by buying the domain through them they are buying things through the registar in this case the service is a shop for buying games so this service has a layer on top which is users Distributing software so now if you're a Game Dev you're shipping things on iio so I should label these all H iio is this layer you have a Game Dev that is this layer we have I want my name is the DNS layer and then you have a whole different layer which is users buying the software this is the layer I don't want to talk about the gamer what's interesting when you're in scenarios like this is how the liability chain Works let's say you're a separate party in this case Funko and you have identified that somebody is Distributing software that violates your trademark you are Funko and you've identified that at this layer a Game Dev is doing something that is illegal in an Ideal World Funko would go straight to that Game Dev doing that and tell them hey if you don't stop we're going to go after you because because this isn't hio violating anything this certainly isn't I want my name violating anything this is a Game Dev supposedly using Funko stuff in an unlicensed way that Funko is now going after them for but Funko didn't do that you'd think okay the next best thing they're going to go to itch nope because Funko is not the one doing it funny enough what happened here is there's a middleman Funko contracts to Brand shield to protect their brand and brand Shield has their special way of doing this brand Shield decided that it's easier to not go to the Game Dev who's causing the problem certainly not to go to the service owner but instead shortcutting all the way the DNS provider and also in that process threatening them saying hey by the way if you don't comply with our demands we're going to go to the registrars that you work with and tell them by the way you should work with this company they're Distributing things that are illegal and this is where the problem happens the thing that sucks here is a user on this layer somebody who is Distributing things on your service is capable of causing something much lower in your chain in this case your DNS without you being involved at all it's possible for somebody Distributing software on your service to cause the things you're building on top of to get [ __ ] to give an example for us because I dealt with this recently with up upload thing by the way if you're not familiar we built the best way to manage file uploads in your fullsack applications upload thing allows users to upload files we had a similar problem instead of registrars I will call I'll put isps on the bottom so internet service providers then we have our hosting providers in this case it's cloudflare then we have service owner that's us upload thing service customers which in this case would be a full stack Dev and you have web app users I'll say this is users of service or users of I don't even what to call this actual end user cool so it's fun here now let's say somebody builds a clone of Google Drive using upload thing you built an upload thing clone for Google Drive now you have users let's say one of those users upload Lo s spyware now we have hosted on utfs slf spyware some end user uploads this file now this file exists on cloud flares infrastructure this is key and this is really dangerous not because like this domain is associated with cloudflare but because this file is being served from one of their IP addresses so because a user all the way up the stack here has uploaded some spyware this isn't the full stack dev's problem this isn't even our problem with upload thing this becomes Cloud Flare's problem because in ISP now will hit up Cloud flare and say hey we're going to block your IP addresses because they're being used to serve malware and then we get a scary letter from cloudflare saying hey upload thing Builders there is spyware being served from your service you need to get rid of this ASAP ASAP because if we don't then Cloud Flair's IP addresses get blocked by isps now we have to go up the chain yet again so Cloud Flair goes to us and says hey what the [ __ ] fix this now we have to go up the chain once more and say hey we just deleted this file [ __ ] you our options now are we can ban this user if we think they are aware of the malicious actions and not doing anything or they themselves are the malicious actor or they now have to go up and they come back to us say no that wasn't us we had a malicious user we're sorry we'll do better filtering for it and they have to go ban their individual user so somebody all the way up the chain is a bad actor here can result in an ISP Banning Cloud fl's IP addresses that's why these chains suck and why they have to be addressed as aggressively as they do but ideally this would have happened much higher up the chain which is something we're now working on we're going to be restricting your ability to host files that are runnable and executable you won't be able to host bash scripts or CMD files or EXs on free tiers ever again that's over now we've learned our lesson in the future we'll be doing more scanning and things like that as well working on introducing all of that that the fact that these things affect us in these hierarchies sucks because now a user of a customer of our service can cause cloud flare problems thankfully this was a notification system where we were told this was happening where in this case Brans Shield didn't give anyone any opportunity here they went to I want my name and said if you don't ban this DNS and ban this domain right now we are no longer going to allow you to work with isps we will force legal action we will go to these isps you're screwed get rid of this domain out of panic and also I would argue incompetence I want my name caved and removed one of the most popular domains on the internet one of the most popular IO domains for sure because they suck at their jobs but so does brand Shield because Brans Shield should have had any system to notice oh hi is a service for Distributing other people's software they are the ones we should be hitting up but they didn't do that they went straight to I want my name and got hi banned from the internet for like over 24 hours and here's what brand Shield had to say you might notice they have replies off and also a lot of community notes on this we want to address recent reports surrounding a website takedown brand Shield serves a trusted partner to many Brands our Aid driven platform detects potential threats and provides analysis and in this case an abuse is identified from an hio subdomain we identified and reported the infringement and requested a takedown of the URL in question not of the entire hi domain temporary takedown of the website was a decision made by the service providers not brand Shield because you didn't report it to the right provider you reported it to the DNS provider not to hio Brand Shield remains committed to supporting our clients by identifying potential digital threats and infringements we encourage platforms to implement stronger self-regulation systems that prevent such issues from escalating nonsense brand showed these to realize that a subdomain is probably owned by the original domain and they should probably go to the service provider of the original domain to figure out what is wrong there and calling hi's Mom like like that is horrifying like I get that you want to get some press stuff and you want to like cool it down and the hiio guy probably wasn't responding to your [ __ ] Funko Pop requests but going after his mom is just insane I would have loved to just blame Brans shield and say Funko Pop's not the problem but this alone means all of these companies [ __ ] suck and should be mocked relentlessly for what they've done they also moved off of I want my name after this because what the [ __ ] here's what pirate had to say instead of filing a dmca claim to hiio you sent a takedown request to their registar are you incompetent or are you just lying about your intentions for those that don't understand why this was sent me off the company brand Shield is a brand protection company that files infringement claims on behalf of their customers and in this case they filed an infringement request with itch's registar for a user generated page that contained Funko Pop branding this led to a complete takedown of the website for the better half of this morning sorry I thought it was a whole day it was only half a day I guess this is the equivalent to Twitch being taken down because a single user was streaming a copyrighted movie yep exactly and a good link from funny enough twitch staff hi's terms of service look at that they have a whole section here for the dmca if you believe one of our Publishers has violated your copyright please let us know about your complaint with the requ information so we can address the complaint if you think a complaint was filed an error you can also contact us to address your concerns there you go technically speaking since neither Brans Shield nor Funko are customers of hio they're not expected to comply with hi's terms but you should check them quick to figure out what the right method is for reporting but since this isn't a human doing a correct method of reporting this is a crappy Rogue AI tool sending threatening emails around disgusting this is what Happ when you let ai go without a human in the middle absolute fundamental failure and Brans Shield should at the very least check how popular a domain is before sending one of these [ __ ] accusations ideally they would shut down this is [ __ ] but like yeah God as pirate said it has a very easy process for handling dmca claims and these processes were ignored it's clear that brand Shield didn't do any research before firing the gun and they shouldn't be taking actions as such brand protection companies should know better the regist should know better and Funko Pop should know better to follow this up brand Shield has tried to blame the victim here yes they are continuing to try and blame people for doing things right effectively it's kind of insane it's like like this should be the end of their business and I would be genuinely somewhat disappointed if people continue to sign up for their service after this so I'd hope when you Google search them this comes up first at Funko we hold a deep respect and appreciation for Indie Games Indie Gamers and Indie devs we're fans of fans and we love the creativity and passion that Define The Gaming Community recently one of our brand protection Partners identified a page on itch imitating the Funko Fusion development website a takedown request was issued to address a specific page Fungo did not request a takedown of the itch platform and we're happy to see the sites back up this morning you reached out to them to engage with them on this issue and we deeply appreciate the understanding of The Gaming Community as the details are determined yeah as the top reply says it's a lot of words to not say that they're sorry and on top of that not admitting that their brand partner BR Shield didn't contact itch they skipped multiple steps and went all the way down the chain I would argue there could be a lawsuit here for irresponsible like behavior on a brand with intention to damage it's pretty absurd yeah this also should have been a dmca request if it was actually fishing like they were trying to look like Funko Fusion when they weren't a fraud of fishing report might make sense but again that should go to hi not to their registar and I can't give any benefit of the doubt to Funko over any of these steps because of how they've behaved that's all I got on this one don't break copyright laws and if you do or you see someone doing it report it the right way please until next time peace nerds",
+  "segments": [
+    {
+      "start": 0,
+      "duration": 3.52,
+      "text": "if you're a prolific enough gamer you"
+    },
+    {
+      "start": 1.48,
+      "duration": 5,
+      "text": "might have noticed that hiio was down a"
+    },
+    {
+      "start": 3.52,
+      "duration": 4.12,
+      "text": "few days ago the reason is utter chaos"
+    },
+    {
+      "start": 6.48,
+      "duration": 2.48,
+      "text": "throughout my years I've seen a lot of"
+    },
+    {
+      "start": 7.64,
+      "duration": 4.039,
+      "text": "different ways that a website can go"
+    },
+    {
+      "start": 8.96,
+      "duration": 5.2,
+      "text": "down I've never seen one quite as weird"
+    },
+    {
+      "start": 11.679,
+      "duration": 5.52,
+      "text": "dumb and just worth talking about as"
+    },
+    {
+      "start": 14.16,
+      "duration": 5.64,
+      "text": "this one quickly from their words hiio"
+    },
+    {
+      "start": 17.199,
+      "duration": 4.761,
+      "text": "has been taken down by original Funko"
+    },
+    {
+      "start": 19.8,
+      "duration": 4.2,
+      "text": "because they Ed some trash AI powered"
+    },
+    {
+      "start": 21.96,
+      "duration": 3.479,
+      "text": "brand protection software that created"
+    },
+    {
+      "start": 24,
+      "duration": 3.519,
+      "text": "some bogus fishing report to our"
+    },
+    {
+      "start": 25.439,
+      "duration": 4.32,
+      "text": "registar who ignored our responses and"
+    },
+    {
+      "start": 27.519,
+      "duration": 5.08,
+      "text": "just disabled the domain this isn't that"
+    },
+    {
+      "start": 29.759,
+      "duration": 5.841,
+      "text": "simp Le this is hilarious they even"
+    },
+    {
+      "start": 32.599,
+      "duration": 5.721,
+      "text": "called his mom yes the hi founder and"
+    },
+    {
+      "start": 35.6,
+      "duration": 5.68,
+      "text": "owner's mom got called because they were"
+    },
+    {
+      "start": 38.32,
+      "duration": 4.88,
+      "text": "so upset about the social media that"
+    },
+    {
+      "start": 41.28,
+      "duration": 3.799,
+      "text": "this is chaos and we have a lot to talk"
+    },
+    {
+      "start": 43.2,
+      "duration": 3.16,
+      "text": "about and I promise you we'll get there"
+    },
+    {
+      "start": 45.079,
+      "duration": 3.8,
+      "text": "right after a quick word from today's"
+    },
+    {
+      "start": 46.36,
+      "duration": 4.96,
+      "text": "sponsor saala the best place to deploy"
+    },
+    {
+      "start": 48.879,
+      "duration": 4.081,
+      "text": "anything and I mean anything they're not"
+    },
+    {
+      "start": 51.32,
+      "duration": 3.039,
+      "text": "joking when they say this they came from"
+    },
+    {
+      "start": 52.96,
+      "duration": 3.64,
+      "text": "the WordPress world if you've heard of"
+    },
+    {
+      "start": 54.359,
+      "duration": 4.2,
+      "text": "kinsta this is them theyve built a"
+    },
+    {
+      "start": 56.6,
+      "duration": 4.439,
+      "text": "platform to host everything else and I"
+    },
+    {
+      "start": 58.559,
+      "duration": 5.16,
+      "text": "mean it from here I can click one button"
+    },
+    {
+      "start": 61.039,
+      "duration": 4.76,
+      "text": "and deploy a larl app D Jango app V app"
+    },
+    {
+      "start": 63.719,
+      "duration": 4.481,
+      "text": "next app any of these and it's not just"
+    },
+    {
+      "start": 65.799,
+      "duration": 4.281,
+      "text": "the app code it's the database too it's"
+    },
+    {
+      "start": 68.2,
+      "duration": 3.44,
+      "text": "the CDN with cloudflare all the"
+    },
+    {
+      "start": 70.08,
+      "duration": 3.64,
+      "text": "craziness you need to set up a web app"
+    },
+    {
+      "start": 71.64,
+      "duration": 3.88,
+      "text": "correctly it takes multiple infer"
+    },
+    {
+      "start": 73.72,
+      "duration": 3.88,
+      "text": "providers to do it right now it doesn't"
+    },
+    {
+      "start": 75.52,
+      "duration": 3.68,
+      "text": "it's basically like you set up your AWS"
+    },
+    {
+      "start": 77.6,
+      "duration": 3.64,
+      "text": "perfectly and you're using cloudflare"
+    },
+    {
+      "start": 79.2,
+      "duration": 3.879,
+      "text": "for the CDN because their cdns are the"
+    },
+    {
+      "start": 81.24,
+      "duration": 3.239,
+      "text": "best in the world but it actually does"
+    },
+    {
+      "start": 83.079,
+      "duration": 3.08,
+      "text": "all of it for you I just click the"
+    },
+    {
+      "start": 84.479,
+      "duration": 2.921,
+      "text": "deploy button it's deploying right now"
+    },
+    {
+      "start": 86.159,
+      "duration": 3,
+      "text": "cool it's deployed if we go to the"
+    },
+    {
+      "start": 87.4,
+      "duration": 3.24,
+      "text": "overview we can see all the parts we can"
+    },
+    {
+      "start": 89.159,
+      "duration": 3.121,
+      "text": "see that cloud flare is in front with"
+    },
+    {
+      "start": 90.64,
+      "duration": 3.4,
+      "text": "DOs protection we could even set it up"
+    },
+    {
+      "start": 92.28,
+      "duration": 3.159,
+      "text": "with CDN and Edge caching with any of"
+    },
+    {
+      "start": 94.04,
+      "duration": 3.039,
+      "text": "the different deployments that we do do"
+    },
+    {
+      "start": 95.439,
+      "duration": 3.72,
+      "text": "after be nextjs you can use the cool"
+    },
+    {
+      "start": 97.079,
+      "duration": 3.601,
+      "text": "next features we're used to from versell"
+    },
+    {
+      "start": 99.159,
+      "duration": 3.561,
+      "text": "anywhere now with all the fun"
+    },
+    {
+      "start": 100.68,
+      "duration": 4.28,
+      "text": "Integrations everything from automatic"
+    },
+    {
+      "start": 102.72,
+      "duration": 4.6,
+      "text": "Builds on poll requests all the fun"
+    },
+    {
+      "start": 104.96,
+      "duration": 3.88,
+      "text": "GitHub automatic deployment and CI stuff"
+    },
+    {
+      "start": 107.32,
+      "duration": 3.36,
+      "text": "everything you would need or expect"
+    },
+    {
+      "start": 108.84,
+      "duration": 3.72,
+      "text": "built in if even I can spin up a full"
+    },
+    {
+      "start": 110.68,
+      "duration": 3.399,
+      "text": "stack LEL app that effortlessly you're"
+    },
+    {
+      "start": 112.56,
+      "duration": 3,
+      "text": "going to have no trouble a fantastic"
+    },
+    {
+      "start": 114.079,
+      "duration": 2.801,
+      "text": "platform for hosting pretty much"
+    },
+    {
+      "start": 115.56,
+      "duration": 3,
+      "text": "anything and I've had a lot of fun with"
+    },
+    {
+      "start": 116.88,
+      "duration": 4.159,
+      "text": "it myself thank you s for sponsoring"
+    },
+    {
+      "start": 118.56,
+      "duration": 3.64,
+      "text": "check them out today at soy. l/ Savala"
+    },
+    {
+      "start": 121.039,
+      "duration": 4.801,
+      "text": "thankfully by the time you're watching"
+    },
+    {
+      "start": 122.2,
+      "duration": 5.76,
+      "text": "this video itched iio is again back"
+    },
+    {
+      "start": 125.84,
+      "duration": 5.28,
+      "text": "online which is very good the indie game"
+    },
+    {
+      "start": 127.96,
+      "duration": 5.279,
+      "text": "scene needs itch if it fails a lot of"
+    },
+    {
+      "start": 131.12,
+      "duration": 4.04,
+      "text": "Indie Game Dev goes along with it we"
+    },
+    {
+      "start": 133.239,
+      "duration": 6.561,
+      "text": "need iio to survive these types of"
+    },
+    {
+      "start": 135.16,
+      "duration": 4.64,
+      "text": "things are to be frank"
+    },
+    {
+      "start": 140.84,
+      "duration": 5.56,
+      "text": "pathetic also credit to Pirate software"
+    },
+    {
+      "start": 143.879,
+      "duration": 4.881,
+      "text": "for putting this on my radar absolute"
+    },
+    {
+      "start": 146.4,
+      "duration": 4.68,
+      "text": "chaos we need to break this down layer"
+    },
+    {
+      "start": 148.76,
+      "duration": 4.759,
+      "text": "by layer OB viously the immediate effect"
+    },
+    {
+      "start": 151.08,
+      "duration": 5.36,
+      "text": "hiio was taken down the take down"
+    },
+    {
+      "start": 153.519,
+      "duration": 5.601,
+      "text": "happened because of I want my name which"
+    },
+    {
+      "start": 156.44,
+      "duration": 4.36,
+      "text": "is a DNS provider I have to excal draw"
+    },
+    {
+      "start": 159.12,
+      "duration": 3.8,
+      "text": "this because there's a lot of layers and"
+    },
+    {
+      "start": 160.8,
+      "duration": 4.719,
+      "text": "I want to make sure that we get it right"
+    },
+    {
+      "start": 162.92,
+      "duration": 5.28,
+      "text": "so if you know anything about software"
+    },
+    {
+      "start": 165.519,
+      "duration": 5.8,
+      "text": "you know it is built on layers if you"
+    },
+    {
+      "start": 168.2,
+      "duration": 5.92,
+      "text": "have something like a DNS"
+    },
+    {
+      "start": 171.319,
+      "duration": 5.801,
+      "text": "provider this has to be built on"
+    },
+    {
+      "start": 174.12,
+      "duration": 7.36,
+      "text": "something this is built on"
+    },
+    {
+      "start": 177.12,
+      "duration": 5.68,
+      "text": "registar and I can standards [ __ ] so on"
+    },
+    {
+      "start": 181.48,
+      "duration": 4.16,
+      "text": "top of the registers we have a DNS"
+    },
+    {
+      "start": 182.8,
+      "duration": 5.84,
+      "text": "provider the DNS provider is something"
+    },
+    {
+      "start": 185.64,
+      "duration": 5.36,
+      "text": "that you now use as the like service"
+    },
+    {
+      "start": 188.64,
+      "duration": 5,
+      "text": "owner so when you are the owner of"
+    },
+    {
+      "start": 191,
+      "duration": 4.799,
+      "text": "something like ping. g hio whatever you"
+    },
+    {
+      "start": 193.64,
+      "duration": 4.8,
+      "text": "have built on top of the DNS Provider by"
+    },
+    {
+      "start": 195.799,
+      "duration": 4.561,
+      "text": "buying the domain through them they are"
+    },
+    {
+      "start": 198.44,
+      "duration": 4.28,
+      "text": "buying things through the registar in"
+    },
+    {
+      "start": 200.36,
+      "duration": 4.84,
+      "text": "this case the service is a shop for"
+    },
+    {
+      "start": 202.72,
+      "duration": 6.04,
+      "text": "buying games so this service has a layer"
+    },
+    {
+      "start": 205.2,
+      "duration": 6.84,
+      "text": "on top which is users"
+    },
+    {
+      "start": 208.76,
+      "duration": 6.759,
+      "text": "Distributing software so now if you're a"
+    },
+    {
+      "start": 212.04,
+      "duration": 6.16,
+      "text": "Game Dev you're shipping things on iio"
+    },
+    {
+      "start": 215.519,
+      "duration": 6.401,
+      "text": "so I should label these all H iio is"
+    },
+    {
+      "start": 218.2,
+      "duration": 5.92,
+      "text": "this layer you have a Game Dev that is"
+    },
+    {
+      "start": 221.92,
+      "duration": 4.48,
+      "text": "this layer we have I want my"
+    },
+    {
+      "start": 224.12,
+      "duration": 4.039,
+      "text": "name is the DNS"
+    },
+    {
+      "start": 226.4,
+      "duration": 5.199,
+      "text": "layer and then you have a whole"
+    },
+    {
+      "start": 228.159,
+      "duration": 4.601,
+      "text": "different layer which is users buying"
+    },
+    {
+      "start": 231.599,
+      "duration": 3.801,
+      "text": "the"
+    },
+    {
+      "start": 232.76,
+      "duration": 3.8,
+      "text": "software this is the layer I don't want"
+    },
+    {
+      "start": 235.4,
+      "duration": 3.32,
+      "text": "to talk about the"
+    },
+    {
+      "start": 236.56,
+      "duration": 4.759,
+      "text": "gamer what's interesting when you're in"
+    },
+    {
+      "start": 238.72,
+      "duration": 5.28,
+      "text": "scenarios like this is how the liability"
+    },
+    {
+      "start": 241.319,
+      "duration": 4.64,
+      "text": "chain Works let's say you're a separate"
+    },
+    {
+      "start": 244,
+      "duration": 6,
+      "text": "party in this"
+    },
+    {
+      "start": 245.959,
+      "duration": 6.761,
+      "text": "case Funko and you have"
+    },
+    {
+      "start": 250,
+      "duration": 5.36,
+      "text": "identified that somebody is Distributing"
+    },
+    {
+      "start": 252.72,
+      "duration": 4.84,
+      "text": "software that violates your trademark"
+    },
+    {
+      "start": 255.36,
+      "duration": 4.64,
+      "text": "you are Funko and you've identified that"
+    },
+    {
+      "start": 257.56,
+      "duration": 4.6,
+      "text": "at this layer a Game Dev is doing"
+    },
+    {
+      "start": 260,
+      "duration": 4.639,
+      "text": "something that is illegal in an Ideal"
+    },
+    {
+      "start": 262.16,
+      "duration": 4.64,
+      "text": "World Funko would go straight to that"
+    },
+    {
+      "start": 264.639,
+      "duration": 4.441,
+      "text": "Game Dev doing that and tell them hey if"
+    },
+    {
+      "start": 266.8,
+      "duration": 4.6,
+      "text": "you don't stop we're going to go after"
+    },
+    {
+      "start": 269.08,
+      "duration": 4.24,
+      "text": "you because because this isn't hio"
+    },
+    {
+      "start": 271.4,
+      "duration": 3.92,
+      "text": "violating anything this certainly isn't"
+    },
+    {
+      "start": 273.32,
+      "duration": 5.719,
+      "text": "I want my name violating anything this"
+    },
+    {
+      "start": 275.32,
+      "duration": 6.48,
+      "text": "is a Game Dev supposedly using Funko"
+    },
+    {
+      "start": 279.039,
+      "duration": 5.121,
+      "text": "stuff in an unlicensed way that Funko is"
+    },
+    {
+      "start": 281.8,
+      "duration": 4.52,
+      "text": "now going after them for but Funko"
+    },
+    {
+      "start": 284.16,
+      "duration": 4.12,
+      "text": "didn't do that you'd think okay the next"
+    },
+    {
+      "start": 286.32,
+      "duration": 4.36,
+      "text": "best thing they're going to go to itch"
+    },
+    {
+      "start": 288.28,
+      "duration": 5.68,
+      "text": "nope because Funko is not the one doing"
+    },
+    {
+      "start": 290.68,
+      "duration": 7.04,
+      "text": "it funny enough what happened here is"
+    },
+    {
+      "start": 293.96,
+      "duration": 6.959,
+      "text": "there's a middleman Funko contracts to"
+    },
+    {
+      "start": 297.72,
+      "duration": 5.36,
+      "text": "Brand shield to protect their brand and"
+    },
+    {
+      "start": 300.919,
+      "duration": 5.401,
+      "text": "brand Shield has their special way of"
+    },
+    {
+      "start": 303.08,
+      "duration": 6.119,
+      "text": "doing this brand Shield decided that"
+    },
+    {
+      "start": 306.32,
+      "duration": 5.04,
+      "text": "it's easier to not go to the Game Dev"
+    },
+    {
+      "start": 309.199,
+      "duration": 4.801,
+      "text": "who's causing the problem certainly not"
+    },
+    {
+      "start": 311.36,
+      "duration": 5.559,
+      "text": "to go to the service owner but instead"
+    },
+    {
+      "start": 314,
+      "duration": 5.199,
+      "text": "shortcutting all the way the DNS"
+    },
+    {
+      "start": 316.919,
+      "duration": 4.521,
+      "text": "provider and also in that process"
+    },
+    {
+      "start": 319.199,
+      "duration": 4.56,
+      "text": "threatening them saying hey by the way"
+    },
+    {
+      "start": 321.44,
+      "duration": 4.36,
+      "text": "if you don't comply with our demands"
+    },
+    {
+      "start": 323.759,
+      "duration": 5.44,
+      "text": "we're going to go to the registrars that"
+    },
+    {
+      "start": 325.8,
+      "duration": 4.92,
+      "text": "you work with and tell them by the way"
+    },
+    {
+      "start": 329.199,
+      "duration": 3.161,
+      "text": "you should work with this company"
+    },
+    {
+      "start": 330.72,
+      "duration": 3.759,
+      "text": "they're Distributing things that are"
+    },
+    {
+      "start": 332.36,
+      "duration": 4.52,
+      "text": "illegal and this is where the problem"
+    },
+    {
+      "start": 334.479,
+      "duration": 5.44,
+      "text": "happens the thing that sucks here is a"
+    },
+    {
+      "start": 336.88,
+      "duration": 5.36,
+      "text": "user on this layer somebody who is"
+    },
+    {
+      "start": 339.919,
+      "duration": 5.321,
+      "text": "Distributing things on your service is"
+    },
+    {
+      "start": 342.24,
+      "duration": 5.2,
+      "text": "capable of causing something much lower"
+    },
+    {
+      "start": 345.24,
+      "duration": 4.28,
+      "text": "in your chain in this case your DNS"
+    },
+    {
+      "start": 347.44,
+      "duration": 3.72,
+      "text": "without you being involved at all it's"
+    },
+    {
+      "start": 349.52,
+      "duration": 3.84,
+      "text": "possible for somebody Distributing"
+    },
+    {
+      "start": 351.16,
+      "duration": 4.8,
+      "text": "software on your service to cause the"
+    },
+    {
+      "start": 353.36,
+      "duration": 5.04,
+      "text": "things you're building on top of to get"
+    },
+    {
+      "start": 355.96,
+      "duration": 3.679,
+      "text": "[ __ ] to give an example for us because"
+    },
+    {
+      "start": 358.4,
+      "duration": 2.28,
+      "text": "I dealt with this recently with up"
+    },
+    {
+      "start": 359.639,
+      "duration": 2.961,
+      "text": "upload thing by the way if you're not"
+    },
+    {
+      "start": 360.68,
+      "duration": 3.72,
+      "text": "familiar we built the best way to manage"
+    },
+    {
+      "start": 362.6,
+      "duration": 4.52,
+      "text": "file uploads in your fullsack"
+    },
+    {
+      "start": 364.4,
+      "duration": 4.4,
+      "text": "applications upload thing allows users"
+    },
+    {
+      "start": 367.12,
+      "duration": 4.32,
+      "text": "to upload"
+    },
+    {
+      "start": 368.8,
+      "duration": 6.2,
+      "text": "files we had a similar problem instead"
+    },
+    {
+      "start": 371.44,
+      "duration": 4.68,
+      "text": "of registrars I will call I'll put isps"
+    },
+    {
+      "start": 375,
+      "duration": 4.88,
+      "text": "on the bottom so internet service"
+    },
+    {
+      "start": 376.12,
+      "duration": 6.199,
+      "text": "providers then we have our hosting"
+    },
+    {
+      "start": 379.88,
+      "duration": 5.8,
+      "text": "providers in this case it's"
+    },
+    {
+      "start": 382.319,
+      "duration": 5.481,
+      "text": "cloudflare then we have service owner"
+    },
+    {
+      "start": 385.68,
+      "duration": 4.519,
+      "text": "that's us upload"
+    },
+    {
+      "start": 387.8,
+      "duration": 5.2,
+      "text": "thing service"
+    },
+    {
+      "start": 390.199,
+      "duration": 6.961,
+      "text": "customers which in this case would be a"
+    },
+    {
+      "start": 393,
+      "duration": 7.52,
+      "text": "full stack Dev and you have web app"
+    },
+    {
+      "start": 397.16,
+      "duration": 6.36,
+      "text": "users I'll say this is users of service"
+    },
+    {
+      "start": 400.52,
+      "duration": 6.119,
+      "text": "or users of I don't even what to call"
+    },
+    {
+      "start": 403.52,
+      "duration": 6.72,
+      "text": "this actual end user cool so it's fun"
+    },
+    {
+      "start": 406.639,
+      "duration": 6.96,
+      "text": "here now let's say somebody builds a"
+    },
+    {
+      "start": 410.24,
+      "duration": 4.92,
+      "text": "clone of Google Drive using upload thing"
+    },
+    {
+      "start": 413.599,
+      "duration": 4.201,
+      "text": "you built an upload thing clone for"
+    },
+    {
+      "start": 415.16,
+      "duration": 5.4,
+      "text": "Google Drive now you have users let's"
+    },
+    {
+      "start": 417.8,
+      "duration": 6.399,
+      "text": "say one of those users upload Lo s"
+    },
+    {
+      "start": 420.56,
+      "duration": 6.639,
+      "text": "spyware now we have hosted on"
+    },
+    {
+      "start": 424.199,
+      "duration": 7.601,
+      "text": "utfs slf"
+    },
+    {
+      "start": 427.199,
+      "duration": 8,
+      "text": "spyware some end user uploads this"
+    },
+    {
+      "start": 431.8,
+      "duration": 6.48,
+      "text": "file now this file exists on cloud"
+    },
+    {
+      "start": 435.199,
+      "duration": 4.801,
+      "text": "flares infrastructure this is key and"
+    },
+    {
+      "start": 438.28,
+      "duration": 3.479,
+      "text": "this is really dangerous not because"
+    },
+    {
+      "start": 440,
+      "duration": 3.639,
+      "text": "like this domain is associated with"
+    },
+    {
+      "start": 441.759,
+      "duration": 3.321,
+      "text": "cloudflare but because this file is"
+    },
+    {
+      "start": 443.639,
+      "duration": 4.161,
+      "text": "being served from one of their IP"
+    },
+    {
+      "start": 445.08,
+      "duration": 4.839,
+      "text": "addresses so because a user all the way"
+    },
+    {
+      "start": 447.8,
+      "duration": 4.799,
+      "text": "up the stack here has uploaded some"
+    },
+    {
+      "start": 449.919,
+      "duration": 4.321,
+      "text": "spyware this isn't the full stack dev's"
+    },
+    {
+      "start": 452.599,
+      "duration": 3.641,
+      "text": "problem this isn't even our problem with"
+    },
+    {
+      "start": 454.24,
+      "duration": 4.72,
+      "text": "upload thing this becomes Cloud Flare's"
+    },
+    {
+      "start": 456.24,
+      "duration": 5.56,
+      "text": "problem because in ISP now will hit up"
+    },
+    {
+      "start": 458.96,
+      "duration": 5.199,
+      "text": "Cloud flare and say hey we're going to"
+    },
+    {
+      "start": 461.8,
+      "duration": 4.48,
+      "text": "block your IP addresses because they're"
+    },
+    {
+      "start": 464.159,
+      "duration": 4.281,
+      "text": "being used to serve malware and then we"
+    },
+    {
+      "start": 466.28,
+      "duration": 4.639,
+      "text": "get a scary letter from cloudflare"
+    },
+    {
+      "start": 468.44,
+      "duration": 4.12,
+      "text": "saying hey upload thing Builders there"
+    },
+    {
+      "start": 470.919,
+      "duration": 3.84,
+      "text": "is spyware being served from your"
+    },
+    {
+      "start": 472.56,
+      "duration": 4.52,
+      "text": "service you need to get rid of this ASAP"
+    },
+    {
+      "start": 474.759,
+      "duration": 4.761,
+      "text": "ASAP because if we don't then Cloud"
+    },
+    {
+      "start": 477.08,
+      "duration": 4.559,
+      "text": "Flair's IP addresses get blocked by isps"
+    },
+    {
+      "start": 479.52,
+      "duration": 3.88,
+      "text": "now we have to go up the chain yet again"
+    },
+    {
+      "start": 481.639,
+      "duration": 4,
+      "text": "so Cloud Flair goes to us and says hey"
+    },
+    {
+      "start": 483.4,
+      "duration": 4.88,
+      "text": "what the [ __ ] fix this now we have to go"
+    },
+    {
+      "start": 485.639,
+      "duration": 4.801,
+      "text": "up the chain once more and say hey we"
+    },
+    {
+      "start": 488.28,
+      "duration": 4.4,
+      "text": "just deleted this file [ __ ] you our"
+    },
+    {
+      "start": 490.44,
+      "duration": 4.36,
+      "text": "options now are we can ban this user if"
+    },
+    {
+      "start": 492.68,
+      "duration": 3.72,
+      "text": "we think they are aware of the malicious"
+    },
+    {
+      "start": 494.8,
+      "duration": 4.079,
+      "text": "actions and not doing anything or they"
+    },
+    {
+      "start": 496.4,
+      "duration": 4.32,
+      "text": "themselves are the malicious actor or"
+    },
+    {
+      "start": 498.879,
+      "duration": 3.28,
+      "text": "they now have to go up and they come"
+    },
+    {
+      "start": 500.72,
+      "duration": 2.8,
+      "text": "back to us say no that wasn't us we had"
+    },
+    {
+      "start": 502.159,
+      "duration": 3.32,
+      "text": "a malicious user we're sorry we'll do"
+    },
+    {
+      "start": 503.52,
+      "duration": 4.6,
+      "text": "better filtering for it and they have to"
+    },
+    {
+      "start": 505.479,
+      "duration": 4.481,
+      "text": "go ban their individual user so somebody"
+    },
+    {
+      "start": 508.12,
+      "duration": 4.44,
+      "text": "all the way up the chain is a bad actor"
+    },
+    {
+      "start": 509.96,
+      "duration": 5.079,
+      "text": "here can result in an ISP Banning Cloud"
+    },
+    {
+      "start": 512.56,
+      "duration": 4.039,
+      "text": "fl's IP addresses that's why these"
+    },
+    {
+      "start": 515.039,
+      "duration": 3.521,
+      "text": "chains suck and why they have to be"
+    },
+    {
+      "start": 516.599,
+      "duration": 4.201,
+      "text": "addressed as aggressively as they do but"
+    },
+    {
+      "start": 518.56,
+      "duration": 3.919,
+      "text": "ideally this would have happened much"
+    },
+    {
+      "start": 520.8,
+      "duration": 3.159,
+      "text": "higher up the chain which is something"
+    },
+    {
+      "start": 522.479,
+      "duration": 4.401,
+      "text": "we're now working on we're going to be"
+    },
+    {
+      "start": 523.959,
+      "duration": 4.281,
+      "text": "restricting your ability to host files"
+    },
+    {
+      "start": 526.88,
+      "duration": 3.88,
+      "text": "that are runnable and executable you"
+    },
+    {
+      "start": 528.24,
+      "duration": 5,
+      "text": "won't be able to host bash scripts or"
+    },
+    {
+      "start": 530.76,
+      "duration": 4.24,
+      "text": "CMD files or EXs on free tiers ever"
+    },
+    {
+      "start": 533.24,
+      "duration": 3.2,
+      "text": "again that's over now we've learned our"
+    },
+    {
+      "start": 535,
+      "duration": 3.12,
+      "text": "lesson in the future we'll be doing more"
+    },
+    {
+      "start": 536.44,
+      "duration": 3.48,
+      "text": "scanning and things like that as well"
+    },
+    {
+      "start": 538.12,
+      "duration": 4.279,
+      "text": "working on introducing all of that that"
+    },
+    {
+      "start": 539.92,
+      "duration": 5.28,
+      "text": "the fact that these things affect us in"
+    },
+    {
+      "start": 542.399,
+      "duration": 6.481,
+      "text": "these hierarchies sucks because now a"
+    },
+    {
+      "start": 545.2,
+      "duration": 6.56,
+      "text": "user of a customer of our service can"
+    },
+    {
+      "start": 548.88,
+      "duration": 4.519,
+      "text": "cause cloud flare problems thankfully"
+    },
+    {
+      "start": 551.76,
+      "duration": 3.84,
+      "text": "this was a notification system where we"
+    },
+    {
+      "start": 553.399,
+      "duration": 4.321,
+      "text": "were told this was happening where in"
+    },
+    {
+      "start": 555.6,
+      "duration": 4.56,
+      "text": "this case Brans Shield didn't give"
+    },
+    {
+      "start": 557.72,
+      "duration": 4.88,
+      "text": "anyone any opportunity here they went to"
+    },
+    {
+      "start": 560.16,
+      "duration": 6.48,
+      "text": "I want my name and said if you don't ban"
+    },
+    {
+      "start": 562.6,
+      "duration": 7.359,
+      "text": "this DNS and ban this domain right"
+    },
+    {
+      "start": 566.64,
+      "duration": 5.48,
+      "text": "now we are no longer going to allow"
+    },
+    {
+      "start": 569.959,
+      "duration": 4.281,
+      "text": "you to work with isps we will force"
+    },
+    {
+      "start": 572.12,
+      "duration": 4.2,
+      "text": "legal action we will go to these isps"
+    },
+    {
+      "start": 574.24,
+      "duration": 3.839,
+      "text": "you're screwed get rid of this domain"
+    },
+    {
+      "start": 576.32,
+      "duration": 4.32,
+      "text": "out of panic and also I would argue"
+    },
+    {
+      "start": 578.079,
+      "duration": 4.44,
+      "text": "incompetence I want my name caved and"
+    },
+    {
+      "start": 580.64,
+      "duration": 3.319,
+      "text": "removed one of the most popular domains"
+    },
+    {
+      "start": 582.519,
+      "duration": 4.401,
+      "text": "on the internet one of the most popular"
+    },
+    {
+      "start": 583.959,
+      "duration": 5.241,
+      "text": "IO domains for sure because they suck at"
+    },
+    {
+      "start": 586.92,
+      "duration": 4.72,
+      "text": "their jobs but so does brand Shield"
+    },
+    {
+      "start": 589.2,
+      "duration": 6.199,
+      "text": "because Brans Shield should have had any"
+    },
+    {
+      "start": 591.64,
+      "duration": 6.28,
+      "text": "system to notice oh hi is a service for"
+    },
+    {
+      "start": 595.399,
+      "duration": 3.761,
+      "text": "Distributing other people's software"
+    },
+    {
+      "start": 597.92,
+      "duration": 3.28,
+      "text": "they are the ones we should be hitting"
+    },
+    {
+      "start": 599.16,
+      "duration": 4.72,
+      "text": "up but they didn't do that they went"
+    },
+    {
+      "start": 601.2,
+      "duration": 4.92,
+      "text": "straight to I want my name and got hi"
+    },
+    {
+      "start": 603.88,
+      "duration": 4.519,
+      "text": "banned from the internet for like over"
+    },
+    {
+      "start": 606.12,
+      "duration": 4.08,
+      "text": "24 hours and here's what brand Shield"
+    },
+    {
+      "start": 608.399,
+      "duration": 5.401,
+      "text": "had to say you might notice they have"
+    },
+    {
+      "start": 610.2,
+      "duration": 6.639,
+      "text": "replies off and also a lot of community"
+    },
+    {
+      "start": 613.8,
+      "duration": 4.88,
+      "text": "notes on this we want to address recent"
+    },
+    {
+      "start": 616.839,
+      "duration": 4.12,
+      "text": "reports surrounding a website"
+    },
+    {
+      "start": 618.68,
+      "duration": 4.32,
+      "text": "takedown brand Shield serves a trusted"
+    },
+    {
+      "start": 620.959,
+      "duration": 3.841,
+      "text": "partner to many Brands our Aid driven"
+    },
+    {
+      "start": 623,
+      "duration": 3.76,
+      "text": "platform detects potential threats and"
+    },
+    {
+      "start": 624.8,
+      "duration": 3.84,
+      "text": "provides analysis and in this case an"
+    },
+    {
+      "start": 626.76,
+      "duration": 3.88,
+      "text": "abuse is identified from an hio"
+    },
+    {
+      "start": 628.64,
+      "duration": 3.52,
+      "text": "subdomain we identified and reported the"
+    },
+    {
+      "start": 630.64,
+      "duration": 3.6,
+      "text": "infringement and requested a takedown of"
+    },
+    {
+      "start": 632.16,
+      "duration": 4.08,
+      "text": "the URL in question not of the entire hi"
+    },
+    {
+      "start": 634.24,
+      "duration": 3.399,
+      "text": "domain temporary takedown of the website"
+    },
+    {
+      "start": 636.24,
+      "duration": 3.24,
+      "text": "was a decision made by the service"
+    },
+    {
+      "start": 637.639,
+      "duration": 4.521,
+      "text": "providers not brand Shield because you"
+    },
+    {
+      "start": 639.48,
+      "duration": 5.08,
+      "text": "didn't report it to the right provider"
+    },
+    {
+      "start": 642.16,
+      "duration": 5.16,
+      "text": "you reported it to the DNS provider not"
+    },
+    {
+      "start": 644.56,
+      "duration": 4.279,
+      "text": "to hio Brand Shield remains committed to"
+    },
+    {
+      "start": 647.32,
+      "duration": 2.519,
+      "text": "supporting our clients by identifying"
+    },
+    {
+      "start": 648.839,
+      "duration": 3.161,
+      "text": "potential digital threats and"
+    },
+    {
+      "start": 649.839,
+      "duration": 3.721,
+      "text": "infringements we encourage platforms to"
+    },
+    {
+      "start": 652,
+      "duration": 3.399,
+      "text": "implement stronger self-regulation"
+    },
+    {
+      "start": 653.56,
+      "duration": 5,
+      "text": "systems that prevent such issues from"
+    },
+    {
+      "start": 655.399,
+      "duration": 5.68,
+      "text": "escalating nonsense brand showed these"
+    },
+    {
+      "start": 658.56,
+      "duration": 4.24,
+      "text": "to realize that a subdomain is probably"
+    },
+    {
+      "start": 661.079,
+      "duration": 3.32,
+      "text": "owned by the original domain and they"
+    },
+    {
+      "start": 662.8,
+      "duration": 3,
+      "text": "should probably go to the service"
+    },
+    {
+      "start": 664.399,
+      "duration": 3.841,
+      "text": "provider of the original domain to"
+    },
+    {
+      "start": 665.8,
+      "duration": 5.64,
+      "text": "figure out what is wrong there and"
+    },
+    {
+      "start": 668.24,
+      "duration": 5.36,
+      "text": "calling hi's Mom like like that is"
+    },
+    {
+      "start": 671.44,
+      "duration": 4.48,
+      "text": "horrifying like I get that you want to"
+    },
+    {
+      "start": 673.6,
+      "duration": 4.28,
+      "text": "get some press stuff and you want to"
+    },
+    {
+      "start": 675.92,
+      "duration": 3.24,
+      "text": "like cool it down and the hiio guy"
+    },
+    {
+      "start": 677.88,
+      "duration": 3.48,
+      "text": "probably wasn't responding to your"
+    },
+    {
+      "start": 679.16,
+      "duration": 5.08,
+      "text": "[ __ ] Funko Pop requests but going"
+    },
+    {
+      "start": 681.36,
+      "duration": 5.719,
+      "text": "after his mom is just"
+    },
+    {
+      "start": 684.24,
+      "duration": 5.399,
+      "text": "insane I would have loved to just blame"
+    },
+    {
+      "start": 687.079,
+      "duration": 4.681,
+      "text": "Brans shield and say Funko Pop's not the"
+    },
+    {
+      "start": 689.639,
+      "duration": 3.44,
+      "text": "problem but this alone means all of"
+    },
+    {
+      "start": 691.76,
+      "duration": 3.56,
+      "text": "these companies [ __ ] suck and should"
+    },
+    {
+      "start": 693.079,
+      "duration": 5.721,
+      "text": "be mocked relentlessly for what they've"
+    },
+    {
+      "start": 695.32,
+      "duration": 6.84,
+      "text": "done they also moved off of I want my"
+    },
+    {
+      "start": 698.8,
+      "duration": 5.56,
+      "text": "name after this because what the [ __ ]"
+    },
+    {
+      "start": 702.16,
+      "duration": 4.239,
+      "text": "here's what pirate had to say instead of"
+    },
+    {
+      "start": 704.36,
+      "duration": 3.919,
+      "text": "filing a dmca claim to hiio you sent a"
+    },
+    {
+      "start": 706.399,
+      "duration": 3.481,
+      "text": "takedown request to their registar are"
+    },
+    {
+      "start": 708.279,
+      "duration": 2.56,
+      "text": "you incompetent or are you just lying"
+    },
+    {
+      "start": 709.88,
+      "duration": 2.759,
+      "text": "about your"
+    },
+    {
+      "start": 710.839,
+      "duration": 3.12,
+      "text": "intentions for those that don't"
+    },
+    {
+      "start": 712.639,
+      "duration": 2.841,
+      "text": "understand why this was sent me off the"
+    },
+    {
+      "start": 713.959,
+      "duration": 2.801,
+      "text": "company brand Shield is a brand"
+    },
+    {
+      "start": 715.48,
+      "duration": 2.799,
+      "text": "protection company that files"
+    },
+    {
+      "start": 716.76,
+      "duration": 3.4,
+      "text": "infringement claims on behalf of their"
+    },
+    {
+      "start": 718.279,
+      "duration": 3.401,
+      "text": "customers and in this case they filed an"
+    },
+    {
+      "start": 720.16,
+      "duration": 4.04,
+      "text": "infringement request with itch's"
+    },
+    {
+      "start": 721.68,
+      "duration": 4.52,
+      "text": "registar for a user generated page that"
+    },
+    {
+      "start": 724.2,
+      "duration": 3.48,
+      "text": "contained Funko Pop branding this led to"
+    },
+    {
+      "start": 726.2,
+      "duration": 3.079,
+      "text": "a complete takedown of the website for"
+    },
+    {
+      "start": 727.68,
+      "duration": 2.48,
+      "text": "the better half of this morning sorry I"
+    },
+    {
+      "start": 729.279,
+      "duration": 2.081,
+      "text": "thought it was a whole day it was only"
+    },
+    {
+      "start": 730.16,
+      "duration": 2.919,
+      "text": "half a day I guess this is the"
+    },
+    {
+      "start": 731.36,
+      "duration": 3.2,
+      "text": "equivalent to Twitch being taken down"
+    },
+    {
+      "start": 733.079,
+      "duration": 4.721,
+      "text": "because a single user was streaming a"
+    },
+    {
+      "start": 734.56,
+      "duration": 5.2,
+      "text": "copyrighted movie yep exactly and a good"
+    },
+    {
+      "start": 737.8,
+      "duration": 4.96,
+      "text": "link from funny enough twitch"
+    },
+    {
+      "start": 739.76,
+      "duration": 4.319,
+      "text": "staff hi's terms of service look at that"
+    },
+    {
+      "start": 742.76,
+      "duration": 3.16,
+      "text": "they have a whole section here for the"
+    },
+    {
+      "start": 744.079,
+      "duration": 3.601,
+      "text": "dmca if you believe one of our"
+    },
+    {
+      "start": 745.92,
+      "duration": 2.84,
+      "text": "Publishers has violated your copyright"
+    },
+    {
+      "start": 747.68,
+      "duration": 2.36,
+      "text": "please let us know about your complaint"
+    },
+    {
+      "start": 748.76,
+      "duration": 2.56,
+      "text": "with the requ information so we can"
+    },
+    {
+      "start": 750.04,
+      "duration": 2.56,
+      "text": "address the complaint if you think a"
+    },
+    {
+      "start": 751.32,
+      "duration": 3.079,
+      "text": "complaint was filed an error you can"
+    },
+    {
+      "start": 752.6,
+      "duration": 4.76,
+      "text": "also contact us to address your concerns"
+    },
+    {
+      "start": 754.399,
+      "duration": 5.401,
+      "text": "there you go technically speaking since"
+    },
+    {
+      "start": 757.36,
+      "duration": 5.44,
+      "text": "neither Brans Shield nor Funko are"
+    },
+    {
+      "start": 759.8,
+      "duration": 5.64,
+      "text": "customers of hio they're not expected to"
+    },
+    {
+      "start": 762.8,
+      "duration": 4.44,
+      "text": "comply with hi's terms but you should"
+    },
+    {
+      "start": 765.44,
+      "duration": 4.199,
+      "text": "check them quick to figure out what the"
+    },
+    {
+      "start": 767.24,
+      "duration": 4.44,
+      "text": "right method is for reporting but since"
+    },
+    {
+      "start": 769.639,
+      "duration": 4.161,
+      "text": "this isn't a human doing a correct"
+    },
+    {
+      "start": 771.68,
+      "duration": 4.959,
+      "text": "method of reporting this is a crappy"
+    },
+    {
+      "start": 773.8,
+      "duration": 5.52,
+      "text": "Rogue AI tool sending threatening emails"
+    },
+    {
+      "start": 776.639,
+      "duration": 4.961,
+      "text": "around disgusting this is what Happ when"
+    },
+    {
+      "start": 779.32,
+      "duration": 4.48,
+      "text": "you let ai go without a human in the"
+    },
+    {
+      "start": 781.6,
+      "duration": 3.52,
+      "text": "middle absolute fundamental failure and"
+    },
+    {
+      "start": 783.8,
+      "duration": 2.88,
+      "text": "Brans Shield should at the very least"
+    },
+    {
+      "start": 785.12,
+      "duration": 2.64,
+      "text": "check how popular a domain is before"
+    },
+    {
+      "start": 786.68,
+      "duration": 3.159,
+      "text": "sending one of these [ __ ]"
+    },
+    {
+      "start": 787.76,
+      "duration": 5.28,
+      "text": "accusations ideally they would shut down"
+    },
+    {
+      "start": 789.839,
+      "duration": 5.12,
+      "text": "this is [ __ ] but like yeah God as"
+    },
+    {
+      "start": 793.04,
+      "duration": 3.919,
+      "text": "pirate said it has a very easy process"
+    },
+    {
+      "start": 794.959,
+      "duration": 4.081,
+      "text": "for handling dmca claims and these"
+    },
+    {
+      "start": 796.959,
+      "duration": 3.921,
+      "text": "processes were ignored it's clear that"
+    },
+    {
+      "start": 799.04,
+      "duration": 3.56,
+      "text": "brand Shield didn't do any research"
+    },
+    {
+      "start": 800.88,
+      "duration": 3.36,
+      "text": "before firing the gun and they shouldn't"
+    },
+    {
+      "start": 802.6,
+      "duration": 2.919,
+      "text": "be taking actions as such brand"
+    },
+    {
+      "start": 804.24,
+      "duration": 2.839,
+      "text": "protection companies should know better"
+    },
+    {
+      "start": 805.519,
+      "duration": 3.601,
+      "text": "the regist should know better and Funko"
+    },
+    {
+      "start": 807.079,
+      "duration": 3.2,
+      "text": "Pop should know better to follow this up"
+    },
+    {
+      "start": 809.12,
+      "duration": 3.959,
+      "text": "brand Shield has tried to blame the"
+    },
+    {
+      "start": 810.279,
+      "duration": 6.56,
+      "text": "victim here yes they are continuing to"
+    },
+    {
+      "start": 813.079,
+      "duration": 5.88,
+      "text": "try and blame people for doing things"
+    },
+    {
+      "start": 816.839,
+      "duration": 4.601,
+      "text": "right effectively it's kind of insane"
+    },
+    {
+      "start": 818.959,
+      "duration": 4.32,
+      "text": "it's like like this should be the end of"
+    },
+    {
+      "start": 821.44,
+      "duration": 3.56,
+      "text": "their business and I would be genuinely"
+    },
+    {
+      "start": 823.279,
+      "duration": 3.721,
+      "text": "somewhat disappointed if people continue"
+    },
+    {
+      "start": 825,
+      "duration": 3.199,
+      "text": "to sign up for their service after this"
+    },
+    {
+      "start": 827,
+      "duration": 3.759,
+      "text": "so I'd hope when you Google search them"
+    },
+    {
+      "start": 828.199,
+      "duration": 4.44,
+      "text": "this comes up first at Funko we hold a"
+    },
+    {
+      "start": 830.759,
+      "duration": 4.241,
+      "text": "deep respect and appreciation for Indie"
+    },
+    {
+      "start": 832.639,
+      "duration": 4.361,
+      "text": "Games Indie Gamers and Indie devs we're"
+    },
+    {
+      "start": 835,
+      "duration": 3.56,
+      "text": "fans of fans and we love the creativity"
+    },
+    {
+      "start": 837,
+      "duration": 2.6,
+      "text": "and passion that Define The Gaming"
+    },
+    {
+      "start": 838.56,
+      "duration": 2.76,
+      "text": "Community"
+    },
+    {
+      "start": 839.6,
+      "duration": 3.56,
+      "text": "recently one of our brand protection"
+    },
+    {
+      "start": 841.32,
+      "duration": 3.56,
+      "text": "Partners identified a page on itch"
+    },
+    {
+      "start": 843.16,
+      "duration": 3.64,
+      "text": "imitating the Funko Fusion development"
+    },
+    {
+      "start": 844.88,
+      "duration": 4.079,
+      "text": "website a takedown request was issued to"
+    },
+    {
+      "start": 846.8,
+      "duration": 3.76,
+      "text": "address a specific page Fungo did not"
+    },
+    {
+      "start": 848.959,
+      "duration": 3.32,
+      "text": "request a takedown of the itch platform"
+    },
+    {
+      "start": 850.56,
+      "duration": 3.56,
+      "text": "and we're happy to see the sites back up"
+    },
+    {
+      "start": 852.279,
+      "duration": 3.12,
+      "text": "this morning you reached out to them to"
+    },
+    {
+      "start": 854.12,
+      "duration": 2.36,
+      "text": "engage with them on this issue and we"
+    },
+    {
+      "start": 855.399,
+      "duration": 4.481,
+      "text": "deeply appreciate the understanding of"
+    },
+    {
+      "start": 856.48,
+      "duration": 6.32,
+      "text": "The Gaming Community as the details are"
+    },
+    {
+      "start": 859.88,
+      "duration": 4.36,
+      "text": "determined yeah as the top reply says"
+    },
+    {
+      "start": 862.8,
+      "duration": 3.8,
+      "text": "it's a lot of words to not say that"
+    },
+    {
+      "start": 864.24,
+      "duration": 5.399,
+      "text": "they're sorry and on top of that not"
+    },
+    {
+      "start": 866.6,
+      "duration": 6.479,
+      "text": "admitting that their brand partner BR"
+    },
+    {
+      "start": 869.639,
+      "duration": 5.44,
+      "text": "Shield didn't contact itch they skipped"
+    },
+    {
+      "start": 873.079,
+      "duration": 4.641,
+      "text": "multiple steps and went all the way down"
+    },
+    {
+      "start": 875.079,
+      "duration": 5.12,
+      "text": "the chain I would argue there could be a"
+    },
+    {
+      "start": 877.72,
+      "duration": 4.76,
+      "text": "lawsuit here for irresponsible like"
+    },
+    {
+      "start": 880.199,
+      "duration": 5.08,
+      "text": "behavior on a brand with intention to"
+    },
+    {
+      "start": 882.48,
+      "duration": 4.68,
+      "text": "damage it's pretty absurd yeah this also"
+    },
+    {
+      "start": 885.279,
+      "duration": 3.36,
+      "text": "should have been a dmca request if it"
+    },
+    {
+      "start": 887.16,
+      "duration": 3.32,
+      "text": "was actually fishing like they were"
+    },
+    {
+      "start": 888.639,
+      "duration": 3.801,
+      "text": "trying to look like Funko Fusion when"
+    },
+    {
+      "start": 890.48,
+      "duration": 4.159,
+      "text": "they weren't a fraud of fishing report"
+    },
+    {
+      "start": 892.44,
+      "duration": 5.24,
+      "text": "might make sense but again that should"
+    },
+    {
+      "start": 894.639,
+      "duration": 4.721,
+      "text": "go to hi not to their registar and I"
+    },
+    {
+      "start": 897.68,
+      "duration": 3.599,
+      "text": "can't give any benefit of the doubt to"
+    },
+    {
+      "start": 899.36,
+      "duration": 3.88,
+      "text": "Funko over any of these steps because of"
+    },
+    {
+      "start": 901.279,
+      "duration": 4.36,
+      "text": "how they've behaved that's all I got on"
+    },
+    {
+      "start": 903.24,
+      "duration": 5.12,
+      "text": "this one don't break copyright laws and"
+    },
+    {
+      "start": 905.639,
+      "duration": 5.401,
+      "text": "if you do or you see someone doing it"
+    },
+    {
+      "start": 908.36,
+      "duration": 6.64,
+      "text": "report it the right way please until"
+    },
+    {
+      "start": 911.04,
+      "duration": 3.96,
+      "text": "next time peace nerds"
+    }
+  ]
+}
