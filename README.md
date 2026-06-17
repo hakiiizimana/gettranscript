@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# gettranscript
 
-## Getting Started
+**Free YouTube transcript generator.** Paste a link, get the full transcript with timestamps. Copy it or download TXT, SRT, or JSON. No account.
 
-First, run the development server:
+Built with [Next.js](https://nextjs.org) and powered by [Stophy](https://stophy.dev).
+
+---
+
+## What it does
+
+- Pulls YouTube captions from a URL (watch, Shorts, youtu.be)
+- Shows timestamped lines you can click to jump on YouTube
+- Copies plain text to clipboard
+- Exports **TXT**, **SRT**, or **JSON**
+- Includes a **Demo** button with a cached sample transcript
+
+No signup wall on the tool. Just paste and go.
+
+## Try it locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
+cp .env.example .env.local   # add your Stophy key
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# .env.local
+STOPHY_API_KEY=st_your_key_here
+```
 
-## Learn More
+Get a key at [stophy.dev](https://stophy.dev). The key stays server-side only.
 
-To learn more about Next.js, take a look at the following resources:
+## How it works
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+Browser → POST /api/transcript → rate limit → Stophy API → normalized transcript
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Paste a YouTube URL
+2. Server fetches captions via Stophy
+3. You read, copy, or download the result
 
-## Deploy on Vercel
+Demo requests skip Stophy and load from `data/demo-transcript.json`. Live requests are capped at **10 per IP per day**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Need this in your code?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+gettranscript runs on **Stophy**, the API to search YouTube, get transcripts, read comments, and inspect channels at scale.
+
+- [Stophy docs](https://docs.stophy.dev)
+- API, CLI, and MCP server for agents and apps
+
+## Stack
+
+| Layer | Tech |
+| --- | --- |
+| Framework | Next.js 16, React 19, TypeScript |
+| Styling | Tailwind CSS 4, [elorm/ui](https://www.npmjs.com/package/elorm) |
+| Transcripts | [Stophy](https://docs.stophy.dev) |
+| Runtime | Bun |
+| Lint / format | [Ultracite](https://ultracite.ai) + Biome |
+
+## Scripts
+
+```bash
+bun dev          # local dev server
+bun run build    # production build
+bun run start    # run production build
+bun run lint     # ultracite check
+bun run fix      # format and auto-fix
+```
+
+## Project layout
+
+```
+app/
+  page.tsx                    # landing page
+  api/transcript/route.ts     # transcript API
+components/
+  transcript-card.tsx         # URL input + results
+  transcript-view.tsx         # timestamped transcript
+lib/
+  stophy.ts                   # Stophy client
+  rate-limit.ts               # per-IP limits
+  formats.ts                  # txt / srt / json exports
+```
+

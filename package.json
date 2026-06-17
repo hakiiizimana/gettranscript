@@ -20,6 +20,21 @@
     "ultracite": "7.8.3"
   },
   "name": "gettranscript",
+  "description": "Free YouTube transcript tool.",
+  "author": "Sy",
+  "license": "MIT",
+  "homepage": "https://stophy.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stophy/gettranscript"
+  },
+  "keywords": [
+    "youtube-transcript",
+    "youtube-transcript-tool",
+    "youtube-transcript-downloader",
+    "youtube-transcript-free",
+    "youtube-transcript-generator"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
