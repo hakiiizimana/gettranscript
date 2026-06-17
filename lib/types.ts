@@ -5,12 +5,12 @@ export interface TranscriptSegment {
 }
 
 export interface TranscriptResult {
-  author: string;
+  author?: string;
   language: string;
   plainText: string;
   segments: TranscriptSegment[];
   thumbnailUrl: string;
-  title: string;
+  title?: string;
   videoId: string;
   videoUrl: string;
 }
