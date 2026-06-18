@@ -210,73 +210,73 @@ export function TranscriptCard() {
               </a>
 
               <div className="flex flex-1 flex-wrap items-center justify-end gap-2">
-              <Tip label="Copy the full text">
-                <Button
-                  className="h-8 gap-1.5 rounded-full px-3 text-xs"
-                  onClick={handleCopy}
-                  size="sm"
-                  type="button"
-                  variant="outline"
-                >
-                  <Copy className="size-3" data-icon />
-                  {copied ? "Copied" : "Copy"}
-                </Button>
-              </Tip>
-              <Tip label="Save as plain text">
-                <Button
-                  className="h-8 gap-1.5 rounded-full px-3 text-xs"
-                  onClick={() =>
-                    downloadFile(
-                      toTxt(transcript),
-                      `${baseName}.txt`,
-                      "text/plain"
-                    )
-                  }
-                  size="sm"
-                  type="button"
-                  variant="outline"
-                >
-                  <Download className="size-3" data-icon />
-                  .txt
-                </Button>
-              </Tip>
-              <Tip label="Save as subtitles">
-                <Button
-                  className="h-8 gap-1.5 rounded-full px-3 text-xs"
-                  onClick={() =>
-                    downloadFile(
-                      toSrt(transcript),
-                      `${baseName}.srt`,
-                      "text/plain"
-                    )
-                  }
-                  size="sm"
-                  type="button"
-                  variant="outline"
-                >
-                  <Download className="size-3" data-icon />
-                  .srt
-                </Button>
-              </Tip>
-              <Tip label="Save as JSON">
-                <Button
-                  className="h-8 gap-1.5 rounded-full px-3 text-xs"
-                  onClick={() =>
-                    downloadFile(
-                      toJson(transcript),
-                      `${baseName}.json`,
-                      "application/json"
-                    )
-                  }
-                  size="sm"
-                  type="button"
-                  variant="outline"
-                >
-                  <Download className="size-3" data-icon />
-                  .json
-                </Button>
-              </Tip>
-            </div>
+                <Tip label="Copy the full text">
+                  <Button
+                    className="h-8 gap-1.5 rounded-full px-3 text-xs"
+                    onClick={handleCopy}
+                    size="sm"
+                    type="button"
+                    variant="outline"
+                  >
+                    <Copy className="size-3" data-icon />
+                    {copied ? "Copied" : "Copy"}
+                  </Button>
+                </Tip>
+                <Tip label="Save as plain text">
+                  <Button
+                    className="h-8 gap-1.5 rounded-full px-3 text-xs"
+                    onClick={() =>
+                      downloadFile(
+                        toTxt(transcript),
+                        `${baseName}.txt`,
+                        "text/plain"
+                      )
+                    }
+                    size="sm"
+                    type="button"
+                    variant="outline"
+                  >
+                    <Download className="size-3" data-icon />
+                    .txt
+                  </Button>
+                </Tip>
+                <Tip label="Save as subtitles">
+                  <Button
+                    className="h-8 gap-1.5 rounded-full px-3 text-xs"
+                    onClick={() =>
+                      downloadFile(
+                        toSrt(transcript),
+                        `${baseName}.srt`,
+                        "text/plain"
+                      )
+                    }
+                    size="sm"
+                    type="button"
+                    variant="outline"
+                  >
+                    <Download className="size-3" data-icon />
+                    .srt
+                  </Button>
+                </Tip>
+                <Tip label="Save as JSON">
+                  <Button
+                    className="h-8 gap-1.5 rounded-full px-3 text-xs"
+                    onClick={() =>
+                      downloadFile(
+                        toJson(transcript),
+                        `${baseName}.json`,
+                        "application/json"
+                      )
+                    }
+                    size="sm"
+                    type="button"
+                    variant="outline"
+                  >
+                    <Download className="size-3" data-icon />
+                    .json
+                  </Button>
+                </Tip>
+              </div>
             </div>
 
             <TranscriptView transcript={transcript} />
