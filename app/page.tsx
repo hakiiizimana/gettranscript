@@ -2,9 +2,16 @@ import { Terminal } from "lucide-react";
 import Link from "next/link";
 
 import { ApiBand } from "@/components/api-band";
+import { FaqSection } from "@/components/faq-section";
 import { JsonLd } from "@/components/json-ld";
 import { TranscriptCard } from "@/components/transcript-card";
 import { Button } from "@/components/ui/button";
+import { faqItems } from "@/lib/faq";
+import {
+  faqPageSchema,
+  organizationEntity,
+  organizationSchema,
+} from "@/lib/seo";
 import { absoluteUrl, siteDescription, siteName } from "@/lib/site";
 
 const howItWorks = [
@@ -32,17 +39,14 @@ export default function Home() {
     <>
       <JsonLd
         data={[
+          organizationSchema(),
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: siteName,
             url: pageUrl,
             description: siteDescription,
-            publisher: {
-              "@type": "Organization",
-              name: "Stophy",
-              url: "https://stophy.dev",
-            },
+            publisher: organizationEntity(),
           },
           {
             "@context": "https://schema.org",
@@ -76,6 +80,7 @@ export default function Home() {
               text: item.body,
             })),
           },
+          faqPageSchema(faqItems),
         ]}
       />
 
@@ -157,6 +162,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <FaqSection />
     </>
   );
 }

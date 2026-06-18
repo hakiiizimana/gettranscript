@@ -26,6 +26,12 @@ export function Header() {
           <nav className="flex items-center gap-3 sm:gap-4">
             <Link
               className="font-mono text-muted-foreground text-xs transition-colors hover:text-foreground"
+              href="/#faq"
+            >
+              FAQ
+            </Link>
+            <Link
+              className="font-mono text-muted-foreground text-xs transition-colors hover:text-foreground"
               href="/#how-it-works"
             >
               How it works
