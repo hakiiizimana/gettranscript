@@ -1,3 +1,10 @@
+"use client";
+
+import {
+  MotionReveal,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/motion";
 import { faqItems } from "@/lib/faq";
 
 export function FaqSection() {
@@ -7,35 +14,34 @@ export function FaqSection() {
       id="faq"
     >
       <div className="mx-auto flex max-w-3xl flex-col gap-8">
-        <div className="text-center">
+        <MotionReveal className="text-center">
           <h2 className="font-medium font-mono text-muted-foreground text-sm uppercase tracking-wider">
             FAQ
           </h2>
           <p className="mt-3 font-mono text-muted-foreground text-sm leading-relaxed">
             Common questions about getting YouTube transcripts for free.
           </p>
-        </div>
+        </MotionReveal>
 
-        <div className="flex flex-col gap-4">
+        <MotionStagger className="flex flex-col gap-4">
           {faqItems.map((item) => (
-            <details
-              className="group rounded-2xl border border-border/45 bg-card px-5 py-4"
-              key={item.question}
-            >
-              <summary className="cursor-pointer list-none font-mono font-semibold text-sm leading-snug marker:content-none">
-                <span className="flex items-start justify-between gap-4">
-                  {item.question}
-                  <span className="text-muted-foreground transition-transform group-open:rotate-45">
-                    +
+            <MotionStaggerItem key={item.question}>
+              <details className="group rounded-2xl border border-border/45 bg-card px-5 py-4 transition-colors hover:border-border/70">
+                <summary className="cursor-pointer list-none font-mono font-semibold text-sm leading-snug marker:content-none">
+                  <span className="flex items-start justify-between gap-4">
+                    {item.question}
+                    <span className="text-muted-foreground transition-transform duration-200 group-open:rotate-45">
+                      +
+                    </span>
                   </span>
-                </span>
-              </summary>
-              <p className="mt-3 font-mono text-muted-foreground text-sm leading-relaxed">
-                {item.answer}
-              </p>
-            </details>
+                </summary>
+                <p className="mt-3 font-mono text-muted-foreground text-sm leading-relaxed">
+                  {item.answer}
+                </p>
+              </details>
+            </MotionStaggerItem>
           ))}
-        </div>
+        </MotionStagger>
       </div>
     </section>
   );
