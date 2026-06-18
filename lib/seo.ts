@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import type { FaqItem } from "@/lib/faq";
+import type { SeoPage } from "@/lib/seo-pages";
 import { absoluteUrl, siteDescription, siteName } from "@/lib/site";
 
 export function buildPageMetadata({
@@ -31,6 +32,14 @@ export function buildPageMetadata({
       description,
     },
   };
+}
+
+export function buildSeoPageMetadata(page: SeoPage): Metadata {
+  return buildPageMetadata({
+    title: page.title,
+    description: page.description,
+    path: page.path,
+  });
 }
 
 export function organizationEntity() {

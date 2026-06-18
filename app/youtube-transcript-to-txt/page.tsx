@@ -1,4 +1,5 @@
-import { buildSeoPageMetadata, SeoLanding } from "@/components/seo-landing";
+import { SeoLanding } from "@/components/seo-landing";
+import { buildSeoPageMetadata } from "@/lib/seo";
 import { getSeoPage } from "@/lib/seo-pages";
 
 const page = getSeoPage("youtube-transcript-to-txt");

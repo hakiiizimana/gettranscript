@@ -1,8 +1,13 @@
+export type ExportFormat = "txt" | "srt" | "json";
+
 export interface SeoPage {
   bullets: string[];
   cta: string;
   description: string;
-  h1: string;
+  format: ExportFormat;
+  formatEyebrow: string;
+  formatPill: string;
+  headline: string;
   intro: string;
   path: string;
   slug: string;
@@ -16,7 +21,10 @@ export const seoPages: SeoPage[] = [
     title: "YouTube Transcript to TXT Converter",
     description:
       "Convert any YouTube video transcript to plain TXT. Paste a link, download caption text with one click. Free, no account.",
-    h1: "YouTube transcript to TXT",
+    format: "txt",
+    formatEyebrow: ".txt",
+    formatPill: "TXT",
+    headline: "YouTube transcript",
     intro:
       "Need the spoken words from a video as plain text? Paste a YouTube URL and download a .txt file you can paste into docs, notes, or AI tools.",
     bullets: [
@@ -33,7 +41,10 @@ export const seoPages: SeoPage[] = [
     title: "YouTube Transcript to SRT Converter",
     description:
       "Turn YouTube captions into SRT subtitle files. Paste a link, get timed subtitles ready for editors and players. Free, no account.",
-    h1: "YouTube transcript to SRT",
+    format: "srt",
+    formatEyebrow: ".srt",
+    formatPill: "SRT",
+    headline: "YouTube transcript",
     intro:
       "Download YouTube captions as an SRT subtitle file with timestamps. Ideal for video editors, players, and accessibility workflows.",
     bullets: [
@@ -50,7 +61,10 @@ export const seoPages: SeoPage[] = [
     title: "YouTube Transcript to JSON Exporter",
     description:
       "Export YouTube transcripts as structured JSON with segments and timestamps. Paste a link and download. Free, no account.",
-    h1: "YouTube transcript to JSON",
+    format: "json",
+    formatEyebrow: ".json",
+    formatPill: "JSON",
+    headline: "YouTube transcript",
     intro:
       "Get transcript data as structured JSON with segments, timestamps, and language metadata. Built for developers, scripts, and automation.",
     bullets: [
