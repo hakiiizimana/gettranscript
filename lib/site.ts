@@ -1,6 +1,4 @@
-export const siteOrigin = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://stophy.dev"
-).replace(/\/$/, "");
+export const siteOrigin = "https://www.gettranscript.xyz";
 
 export const siteName = "gettranscript";
 
