@@ -13,7 +13,7 @@ export function Header() {
 
   return (
     <header className="relative border-border/50 border-b">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-6 lg:px-10">
+      <div className="mx-auto flex h-14 max-w-[90rem] items-center justify-between gap-4 px-6 lg:px-8">
         <Link
           className="inline-flex items-center gap-2 font-mono font-semibold text-foreground text-sm tracking-tight"
           href="/"

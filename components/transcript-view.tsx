@@ -17,9 +17,9 @@ export function TranscriptView({ transcript }: TranscriptViewProps) {
   const [timestampMode, setTimestampMode] = useState(true);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border/45 bg-card">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-border/45 border-b bg-muted/30 px-4 py-2.5">
-        <p className="font-medium font-mono text-muted-foreground text-xs uppercase tracking-wide">
+    <div className="overflow-hidden rounded-2xl border border-border/45 bg-card transition-colors hover:border-border/70">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-border/45 border-b px-5 py-4">
+        <p className="font-mono font-semibold text-sm leading-snug">
           Transcript
         </p>
 
@@ -43,7 +43,7 @@ export function TranscriptView({ transcript }: TranscriptViewProps) {
         </div>
       </div>
 
-      <div className="scrollbar-none max-h-96 overflow-y-auto">
+      <div className="scrollbar-none max-h-[32rem] overflow-y-auto sm:max-h-[36rem]">
         {timestampMode ? (
           <ol className="divide-y divide-border/35">
             {transcript.segments.map((seg) => {
@@ -52,7 +52,7 @@ export function TranscriptView({ transcript }: TranscriptViewProps) {
 
               return (
                 <li
-                  className="group flex gap-3 px-4 py-3 transition-colors hover:bg-muted/25 sm:gap-4"
+                  className="group flex gap-3 px-5 py-3.5 transition-colors hover:bg-muted/25 sm:gap-4 sm:py-4"
                   key={`${seg.start}-${seg.duration}-${seg.text}`}
                 >
                   <Tip label={`Open at ${time} on YouTube`}>
@@ -74,7 +74,7 @@ export function TranscriptView({ transcript }: TranscriptViewProps) {
             })}
           </ol>
         ) : (
-          <div className="p-4">
+          <div className="px-5 py-4">
             <p className="font-mono text-foreground text-sm leading-relaxed">
               {transcript.plainText}
             </p>

@@ -10,15 +10,6 @@ import { TranscriptView } from "@/components/transcript-view";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   Field,
   FieldError,
   FieldGroup,
@@ -31,6 +22,9 @@ import { toJson, toSrt, toTxt } from "@/lib/formats";
 import { easeOut, springTransition } from "@/lib/motion";
 import type { TranscriptResult } from "@/lib/types";
 import { normalizeYouTubeUrl } from "@/lib/youtube";
+
+const playgroundCardClass =
+  "rounded-2xl border border-border/45 bg-card px-5 py-5 transition-colors hover:border-border/70 sm:px-6 sm:py-6";
 
 function downloadFile(content: string, filename: string, mime: string) {
   const blob = new Blob([content], { type: mime });
@@ -114,210 +108,213 @@ export function TranscriptCard() {
   return (
     <motion.div
       animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      className="flex w-full flex-col gap-4"
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       transition={{ duration: 0.55, ease: easeOut }}
     >
-      <Card className="w-full">
-        <CardHeader className="pb-4">
+      <div className={playgroundCardClass}>
+        <div className="flex items-start justify-between gap-6">
           <div className="flex items-center gap-2">
             <Flame className="size-3.5 text-orange-500" />
             <span className="font-medium font-mono text-[11px] text-orange-600 uppercase tracking-wider">
               Free
             </span>
           </div>
-          <CardAction>
-            <Tip label="Try it with a sample video">
-              <Button
-                className="h-7 gap-1.5 rounded-full px-3 text-xs"
-                disabled={loading}
-                onClick={handleDemo}
-                size="sm"
-                type="button"
-                variant="outline"
-              >
-                <Eye className="size-3" data-icon />
-                Demo
-              </Button>
-            </Tip>
-          </CardAction>
-          <CardTitle className="text-center font-medium font-mono text-lg">
+          <Tip label="Try it with a sample video">
+            <Button
+              className="h-7 gap-1.5 rounded-full px-3 text-xs"
+              disabled={loading}
+              onClick={handleDemo}
+              size="sm"
+              type="button"
+              variant="outline"
+            >
+              <Eye className="size-3" data-icon />
+              Demo
+            </Button>
+          </Tip>
+        </div>
+
+        <div className="mt-7 flex flex-col gap-3 sm:mt-8">
+          <h2 className="font-mono font-semibold text-base leading-snug sm:text-lg">
             Paste a link, get the transcript
-          </CardTitle>
-          <CardDescription className="text-center font-mono text-sm leading-relaxed">
+          </h2>
+          <p className="font-mono text-muted-foreground text-sm leading-relaxed">
             Drop a YouTube URL. Copy the text or download a file.
-          </CardDescription>
-        </CardHeader>
+          </p>
+        </div>
 
-        <CardContent className="flex flex-col gap-4">
-          <form noValidate onSubmit={handleSubmit}>
-            <FieldGroup>
-              <Field data-invalid={!!error}>
-                <FieldLabel className="sr-only" htmlFor="video-url">
-                  YouTube URL
-                </FieldLabel>
-                <div className="flex flex-col gap-2 sm:flex-row">
-                  <Input
-                    autoComplete="off"
-                    className="h-10 flex-1 rounded-xl font-mono text-sm"
-                    disabled={loading}
-                    id="video-url"
-                    inputMode="url"
-                    onChange={(e) => {
-                      setUrl(e.target.value);
-                      if (error) {
-                        setError(null);
-                      }
-                    }}
-                    placeholder="https://www.youtube.com/watch?v=..."
-                    spellCheck={false}
-                    type="text"
-                    value={url}
-                  />
-                  <Button
-                    className="h-10 shrink-0 rounded-xl px-5 text-sm"
-                    disabled={!url.trim() || loading}
-                    size="lg"
-                    type="submit"
-                    variant="outline"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="size-4 animate-spin" data-icon />
-                        One sec…
-                      </>
-                    ) : (
-                      "Get transcript"
-                    )}
-                  </Button>
-                </div>
-                {error && (
-                  <motion.div
-                    animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-                    initial={reduceMotion ? false : { opacity: 0, x: -6 }}
-                    transition={{ duration: 0.25, ease: easeOut }}
-                  >
-                    <FieldError>{error}</FieldError>
-                  </motion.div>
-                )}
-              </Field>
-            </FieldGroup>
-          </form>
+        <form className="mt-7 sm:mt-8" noValidate onSubmit={handleSubmit}>
+          <FieldGroup>
+            <Field data-invalid={!!error}>
+              <FieldLabel className="sr-only" htmlFor="video-url">
+                YouTube URL
+              </FieldLabel>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Input
+                  autoComplete="off"
+                  className="h-11 flex-1 rounded-xl border-border/45 bg-background font-mono text-sm"
+                  disabled={loading}
+                  id="video-url"
+                  inputMode="url"
+                  onChange={(e) => {
+                    setUrl(e.target.value);
+                    if (error) {
+                      setError(null);
+                    }
+                  }}
+                  placeholder="https://www.youtube.com/watch?v=..."
+                  spellCheck={false}
+                  type="text"
+                  value={url}
+                />
+                <Button
+                  className="h-11 shrink-0 rounded-xl px-5 text-sm"
+                  disabled={!url.trim() || loading}
+                  size="lg"
+                  type="submit"
+                  variant="outline"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="size-4 animate-spin" data-icon />
+                      One sec…
+                    </>
+                  ) : (
+                    "Get transcript"
+                  )}
+                </Button>
+              </div>
+              {error && (
+                <motion.div
+                  animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                  className="mt-2"
+                  initial={reduceMotion ? false : { opacity: 0, x: -6 }}
+                  transition={{ duration: 0.25, ease: easeOut }}
+                >
+                  <FieldError>{error}</FieldError>
+                </motion.div>
+              )}
+            </Field>
+          </FieldGroup>
+        </form>
 
-          <AnimatePresence mode="wait">
-            {transcript && (
-              <motion.div
-                animate={{ opacity: 1, y: 0 }}
-                className="flex flex-col gap-3"
-                exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
-                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                key="transcript-results"
-                transition={reduceMotion ? { duration: 0 } : springTransition}
-              >
-                <div className="flex flex-wrap items-center gap-3">
-                  <a
-                    className="relative block aspect-video w-20 shrink-0 overflow-hidden rounded-lg bg-muted ring-1 ring-border/45 transition-opacity hover:opacity-90 sm:w-24"
-                    href={transcript.videoUrl}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <Image
-                      alt={
-                        transcript.title
-                          ? `Thumbnail for ${transcript.title}`
-                          : "YouTube video thumbnail"
-                      }
-                      className="object-cover"
-                      fill
-                      sizes="96px"
-                      src={transcript.thumbnailUrl}
-                    />
-                  </a>
-
-                  <div className="flex flex-1 flex-wrap items-center justify-end gap-2">
-                    <Tip label="Copy the full text">
-                      <Button
-                        className="h-8 gap-1.5 rounded-full px-3 text-xs"
-                        onClick={handleCopy}
-                        size="sm"
-                        type="button"
-                        variant="outline"
-                      >
-                        <Copy className="size-3" data-icon />
-                        {copied ? "Copied" : "Copy"}
-                      </Button>
-                    </Tip>
-                    <Tip label="Save as plain text">
-                      <Button
-                        className="h-8 gap-1.5 rounded-full px-3 text-xs"
-                        onClick={() =>
-                          downloadFile(
-                            toTxt(transcript),
-                            `${baseName}.txt`,
-                            "text/plain"
-                          )
-                        }
-                        size="sm"
-                        type="button"
-                        variant="outline"
-                      >
-                        <Download className="size-3" data-icon />
-                        .txt
-                      </Button>
-                    </Tip>
-                    <Tip label="Save as subtitles">
-                      <Button
-                        className="h-8 gap-1.5 rounded-full px-3 text-xs"
-                        onClick={() =>
-                          downloadFile(
-                            toSrt(transcript),
-                            `${baseName}.srt`,
-                            "text/plain"
-                          )
-                        }
-                        size="sm"
-                        type="button"
-                        variant="outline"
-                      >
-                        <Download className="size-3" data-icon />
-                        .srt
-                      </Button>
-                    </Tip>
-                    <Tip label="Save as JSON">
-                      <Button
-                        className="h-8 gap-1.5 rounded-full px-3 text-xs"
-                        onClick={() =>
-                          downloadFile(
-                            toJson(transcript),
-                            `${baseName}.json`,
-                            "application/json"
-                          )
-                        }
-                        size="sm"
-                        type="button"
-                        variant="outline"
-                      >
-                        <Download className="size-3" data-icon />
-                        .json
-                      </Button>
-                    </Tip>
-                  </div>
-                </div>
-
-                <TranscriptView transcript={transcript} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </CardContent>
-
-        <CardFooter className="flex items-center justify-between border-border/40 border-t pt-4">
+        <div className="mt-5 flex items-center justify-between border-border/45 border-t pt-4">
           <p className="font-mono text-muted-foreground text-xs">
             No account needed
           </p>
           <Badge className="font-mono font-normal text-[10px]" variant="soft">
             .txt · .srt · .json
           </Badge>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {transcript && (
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col gap-4"
+            exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            key="transcript-results"
+            transition={reduceMotion ? { duration: 0 } : springTransition}
+          >
+            <div className={playgroundCardClass}>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  className="relative block aspect-video w-20 shrink-0 overflow-hidden rounded-xl bg-muted ring-1 ring-border/45 transition-opacity hover:opacity-90 sm:w-24"
+                  href={transcript.videoUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Image
+                    alt={
+                      transcript.title
+                        ? `Thumbnail for ${transcript.title}`
+                        : "YouTube video thumbnail"
+                    }
+                    className="object-cover"
+                    fill
+                    sizes="96px"
+                    src={transcript.thumbnailUrl}
+                  />
+                </a>
+
+                <div className="flex flex-1 flex-wrap items-center justify-end gap-2">
+                  <Tip label="Copy the full text">
+                    <Button
+                      className="h-8 gap-1.5 rounded-full px-3 text-xs"
+                      onClick={handleCopy}
+                      size="sm"
+                      type="button"
+                      variant="outline"
+                    >
+                      <Copy className="size-3" data-icon />
+                      {copied ? "Copied" : "Copy"}
+                    </Button>
+                  </Tip>
+                  <Tip label="Save as plain text">
+                    <Button
+                      className="h-8 gap-1.5 rounded-full px-3 text-xs"
+                      onClick={() =>
+                        downloadFile(
+                          toTxt(transcript),
+                          `${baseName}.txt`,
+                          "text/plain"
+                        )
+                      }
+                      size="sm"
+                      type="button"
+                      variant="outline"
+                    >
+                      <Download className="size-3" data-icon />
+                      .txt
+                    </Button>
+                  </Tip>
+                  <Tip label="Save as subtitles">
+                    <Button
+                      className="h-8 gap-1.5 rounded-full px-3 text-xs"
+                      onClick={() =>
+                        downloadFile(
+                          toSrt(transcript),
+                          `${baseName}.srt`,
+                          "text/plain"
+                        )
+                      }
+                      size="sm"
+                      type="button"
+                      variant="outline"
+                    >
+                      <Download className="size-3" data-icon />
+                      .srt
+                    </Button>
+                  </Tip>
+                  <Tip label="Save as JSON">
+                    <Button
+                      className="h-8 gap-1.5 rounded-full px-3 text-xs"
+                      onClick={() =>
+                        downloadFile(
+                          toJson(transcript),
+                          `${baseName}.json`,
+                          "application/json"
+                        )
+                      }
+                      size="sm"
+                      type="button"
+                      variant="outline"
+                    >
+                      <Download className="size-3" data-icon />
+                      .json
+                    </Button>
+                  </Tip>
+                </div>
+              </div>
+            </div>
+
+            <TranscriptView transcript={transcript} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

@@ -65,14 +65,13 @@ export default function Home() {
         ]}
       />
 
-      <main className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center gap-12 px-6 py-20 text-center lg:px-10 lg:py-28">
+      <main className="relative mx-auto flex w-full max-w-[90rem] flex-1 flex-col items-center justify-center gap-12 px-6 py-20 text-center lg:px-8 lg:py-28">
         <HeroSection />
 
-        <section
-          className="flex w-full max-w-3xl justify-center"
-          id="get-transcript"
-        >
-          <TranscriptCard />
+        <section className="flex w-full justify-center" id="get-transcript">
+          <div className="w-full max-w-3xl">
+            <TranscriptCard />
+          </div>
         </section>
       </main>
 
