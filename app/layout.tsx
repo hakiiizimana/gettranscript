@@ -19,6 +19,8 @@ const geistMono = Geist_Mono({
 
 const title = "Free YouTube Transcript Generator & Downloader | TXT, SRT, JSON";
 
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
+
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl("/")),
   title: {
@@ -36,6 +38,9 @@ export const metadata: Metadata = {
     "youtube subtitles",
     "txt srt json transcript",
     "youtube transcript tool",
+    "youtube transcript to txt",
+    "youtube transcript to srt",
+    "youtube transcript to json",
   ],
   authors: [{ name: siteName, url: absoluteUrl("/") }],
   creator: "Stophy",
@@ -65,21 +70,15 @@ export const metadata: Metadata = {
     siteName,
     title,
     description: siteDescription,
-    images: [
-      {
-        url: absoluteUrl("/icon.svg"),
-        width: 32,
-        height: 32,
-        alt: `${siteName} logo`,
-      },
-    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description: siteDescription,
-    images: [absoluteUrl("/icon.svg")],
   },
+  verification: googleSiteVerification
+    ? { google: googleSiteVerification }
+    : undefined,
   other: {
     "llms-txt": absoluteUrl("/llms.txt"),
   },

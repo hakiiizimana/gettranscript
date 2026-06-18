@@ -1,7 +1,15 @@
+import { seoPages } from "@/lib/seo-pages";
 import { absoluteUrl, siteDescription, siteName } from "@/lib/site";
 
 export function getLlmsTxt(): string {
   const home = absoluteUrl("/");
+
+  const pageLinks = seoPages
+    .map(
+      (page) =>
+        `- [${page.title}](${absoluteUrl(page.path)}): ${page.description}`
+    )
+    .join("\n");
 
   return `# ${siteName}
 
@@ -12,6 +20,7 @@ Free YouTube transcript generator by Stophy. Paste a watch, Shorts, or youtu.be 
 ## Pages
 
 - [${siteName}](${home}): Main transcript tool with URL input, live preview, copy, and download
+${pageLinks}
 
 ## Features
 
