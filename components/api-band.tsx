@@ -1,12 +1,15 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
+import { MotionReveal } from "@/components/motion";
 import { Button } from "@/components/ui/button";
 
 export function ApiBand() {
   return (
     <section className="relative border-border/50 border-t px-6 py-14 lg:px-10">
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
+      <MotionReveal className="mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
         <h2 className="font-mono font-semibold text-foreground text-lg tracking-tight sm:text-xl">
           Need this in your code?
         </h2>
@@ -38,7 +41,7 @@ export function ApiBand() {
           Get the API
           <ArrowRight className="size-4" data-icon />
         </Button>
-      </div>
+      </MotionReveal>
     </section>
   );
 }
