@@ -10,7 +10,7 @@
   },
   "overrides": [
     {
-      "includes": ["app/layout.tsx"],
+      "includes": ["app/layout.tsx", "components/json-ld.tsx"],
       "linter": {
         "rules": {
           "security": {
